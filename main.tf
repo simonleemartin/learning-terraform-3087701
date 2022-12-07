@@ -14,7 +14,6 @@ data "aws_ami" "app_ami" {
   owners = ["979382823631"] # Bitnami
 }
 
-
 module "blog_vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
@@ -66,12 +65,6 @@ module "blog_alb" {
       backend_protocol = "HTTP"
       backend_port     = 80
       target_type      = "instance"
-      targets = {
-        my_target = {
-          target_id = aws_instance.blog.id
-          port = 80
-        }
-      }
     }
   ]
 
